@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Monte-Carlo Tree Search for Efficient Visually Guided Rearrangement Planning">
+    <meta name="author" content="WILLOW team">
+
+    <title>Monte-Carlo Tree Search for Efficient Visually Guided Rearrangement Planning</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="style.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+      <div class="container">
+          <div class="header">
+          </div>
+          <div class="header">
+              <center>
+                  <h1> <b> Monte-Carlo Tree Search for Efficient Visually Guided Rearrangement Planning </b> </h1>
+                  <ul class="list-inline authors">
+                      <li><a href="http://imagine.enpc.fr/~zagoruys/">Sergey Zagoruyko*</a></li>
+                      <li>Yann Labbé*</li>
+                      <li>Igor Kalevatykh</li>
+                      <li><a href="https://www.di.ens.fr/~laptev/">Ivan Laptev</a></li>
+                      <li><a href="https://jcarpent.github.io/">Justin Carpentier</a></li>
+                      <li><a href="http://imagine.enpc.fr/~aubrym/">Mathieu Aubry</a></li>
+                      <li><a href="http://www.di.ens.fr/~josef/">Josef Sivic</a></li>
+                  </ul>
+                  <h4> * equal contribution </h4>
+              </center>
+              <br>
+          </div>
+      </div>
+
+    <div class="container">
+        <center>
+            <img class="img-responsive"  src="images/teaser.svg" title="Visually guided rearrangement planning."/>
+        </center>
+        <h4>
+            <b> Visually guided rearrangement planning. </b>
+            Given a source (a) and target (b) RGB images depicting a robot and multiple
+            movable objects on a table, our approach estimates the positions of
+            objects in the scene without the need for explicit camera calibration
+            and efficiently finds a sequence of robot actions (c) to re-arrange
+            the source scene into the target scene. Final object configuration
+            after re-arrangement by the robot is shown in (d).
+        </h4>
+        <div class="header">
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <h3>Abstract</h3>
+            <p style="font-size:16px">
+                In this paper, we address the problem of visually
+                guided rearrangement planning with many movable objects,
+                i.e., finding a sequence of actions to move a set of objects from
+                an initial arrangement to a desired one, while relying directly on
+                visual inputs coming from a camera. We introduce an efficient
+                and scalable rearrangement planning method, addressing a
+                fundamental limitation of most existing approaches that do not
+                scale well with the number of objects. This increased efficiency
+                allows us to use planning in a closed loop with visual workspace
+                analysis to build a robust rearrangement framework that can
+                recover from errors and external perturbations.
+                The contributions of this work are threefold. First, we
+                develop an AlphaGo-like strategy for rearrangement planning,
+                improving the efficiency of Monte-Carlo Tree Search (MCTS)
+                using a policy trained from rearrangement planning examples.
+                We show empirically that the proposed approach scales well
+                with the number of objects. Second, in order to demonstrate
+                the effectivity of the planner on a real robot, we adopt a
+                state-of-the-art calibration-free visual recognition system that
+                outputs position of a single object and extend it to estimate
+                the state of a workspace containing multiple objects. Third,
+                we validate the complete pipeline with several experiments
+                on a real UR-5 robotic arm solving rearrangement planning
+                problems with multiple movable objects and only requiring
+                few seconds of computation to compute the plan. We also show
+                empirically that the robot can successfully recover from errors
+                and perturbations in the workspace.
+            </p>
+        </div>
+
+        <div class="row">
+            <h3>Video</h3>
+            <center>
+                <iframe width="640" height="360" src="https://www.youtube.com/embed/fS5tTa_Tl1Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </center>
+        </div>
+
+        <div class="row">
+            <h3>Paper</h3>
+	          <p>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a href="https://arxiv.org/abs/1904.10348"><img style="box-shadow: 5px 5px 2px #888888; margin: 10px" src="images/paper-screenshot.png" width="150px"></a>
+                            </td>
+                            <td>
+                                S. Zagoruyko*, Y. Labbé*, I. Kalevatykh, I. Laptev, J. Carpentier, M. Aubry and J. Sivic<br>
+                                <b> Monte-Carlo Tree Search for Efficient Visually Guided Rearrangement Planning </b> <br>
+                                <i> arXiv preprint arXiv:1904.10348 </i>
+                                [<a href="https://arxiv.org/abs/1904.10348">Paper on arXiv</a>]
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>BibTeX</h4>
+                <pre><tt>
+@misc{1904.10348,
+Author = {Sergey Zagoruyko and Yann Labbé and Igor Kalevatykh and Ivan Laptev and Justin Carpentier and Mathieu Aubry and Josef Sivic},
+Title = {Monte-Carlo Tree Search for Efficient Visually Guided Rearrangement Planning},
+Year = {2019},
+Eprint = {arXiv:1904.10348}}
+                    </tt>
+                </pre>
+        </div>
+
+        <div class="row">
+            <h3>Code and data.</h3>
+                <p style="font-size:16px">
+                    We provide the training and evaluation data as well as the state prediction model used in the experiments mentionned in the paper. <br>
+                    <br>
+                    If you have the same setup (UR5 robot and Robotiq 3-Finger Adaptive Robot gripper), you can use the model for extracting object positions from an <b> uncalibrated </b> RGB camera.
+                    This information can be used to perform other tasks with the robot. <br>
+                    <br>
+                    Please see the github repository <a href="https://github.com/ylabbe/rearrangement-planning"> here </a> for more informations.
+		            </p>
+        </div>
+
+      <div class="row">
+        <h3>Acknowledgements</h3>
+        <p style="font-size:16px">
+            We thank Loïc Esteve and Ignacio Rocco for helpful
+            discussions. This work was partially supported by the DGA
+            RAPID projects DRAAF and TABASCO, the MSR-Inria
+            joint lab, the Louis Vuitton - ENS Chair on Artificial
+            Intelligence, the ERC grant LEAP (No. 336845), the CIFAR
+            Learning in Machines&Brains program, and the European
+            Regional Development Fund under the project IMPACT (reg.
+            no. CZ.02.1.01/0.0/0.0/15 003/0000468).
+		    </p>
+      </div>
+
+      <div class="row">
+        <h3>Copyright Notice</h3>
+        <p style="font-size:16px">
+            The documents contained in these directories are included by the contributing authors
+            as a means to ensure timely dissemination of scholarly and technical work on a non-commercial basis.
+            Copyright and all rights therein are maintained by the authors or by other copyright holders, notwithstanding that they have offered
+            their works here electronically. It is understood that all persons copying this information will adhere to the terms and constraints
+            invoked by each author's copyright
+            .</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>
